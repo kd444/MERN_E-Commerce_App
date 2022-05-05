@@ -8,6 +8,7 @@ import Badge from "react-bootstrap/Badge";
 import Nav from "react-bootstrap/Nav";
 import { useContext } from "react";
 import { Store } from "./Store";
+import CartScreen from "./screens/CartScreen";
 function App() {
     const { state } = useContext(Store);
     const { cart } = state;
@@ -43,6 +44,7 @@ function App() {
                                 path="/product/:slug"
                                 element={<ProductScreen />}
                             />
+                            <Route path="/cart" element={<CartScreen />} />
                             <Route path="/" element={<HomeScreen />} />
                         </Routes>
                     </Container>
