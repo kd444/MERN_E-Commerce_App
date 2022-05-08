@@ -1,4 +1,21 @@
+// for creating  a hash out of a password string
+import bcrypt from "bcryptjs";
+
 const data = {
+    users: [
+        {
+            name: "Darshan",
+            email: "admin@example.com",
+            password: bcrypt.hashSync("123456"),
+            isAdmin: true,
+        },
+        {
+            name: "John",
+            email: "user@example.com",
+            password: bcrypt.hashSync("123456"),
+            isAdmin: false,
+        },
+    ],
     products: [
         {
             // assigned automatically
