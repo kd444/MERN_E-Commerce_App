@@ -1,6 +1,6 @@
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
 import Navbar from "react-bootstrap/Navbar";
@@ -8,25 +8,25 @@ import Container from "react-bootstrap/Container";
 import { LinkContainer } from "react-router-bootstrap";
 import Badge from "react-bootstrap/Badge";
 import Nav from "react-bootstrap/Nav";
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import NavDropdown from "react-bootstrap/NavDropdown";
 import { useContext } from "react";
 import { Store } from "./Store";
 import CartScreen from "./screens/CartScreen";
 import SigninScreen from "./screens/SigninScreen";
-import ShippingAddressScreen from './screens/ShippingAddressScreen';
-import SignupScreen from './screens/SignupScreen';
-import PaymentMethodScreen from './screens/PaymentMethodScreen';
-
+import ShippingAddressScreen from "./screens/ShippingAddressScreen";
+import SignupScreen from "./screens/SignupScreen";
+import PaymentMethodScreen from "./screens/PaymentMethodScreen";
+import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 
 function App() {
     const { state, dispatch: ctxDispatch } = useContext(Store);
     const { cart, userInfo } = state;
 
     const signoutHandler = () => {
-        ctxDispatch({ type: 'USER_SIGNOUT' });
-        localStorage.removeItem('userInfo');
-        localStorage.removeItem('shippingAddress');
-        localStorage.removeItem('paymentMethod');
+        ctxDispatch({ type: "USER_SIGNOUT" });
+        localStorage.removeItem("userInfo");
+        localStorage.removeItem("shippingAddress");
+        localStorage.removeItem("paymentMethod");
     };
     return (
         <BrowserRouter>
@@ -51,12 +51,19 @@ function App() {
                                     )}
                                 </Link>
                                 {userInfo ? (
-                                    <NavDropdown title={userInfo.name} id="basic-nav-dropdown">
+                                    <NavDropdown
+                                        title={userInfo.name}
+                                        id="basic-nav-dropdown"
+                                    >
                                         <LinkContainer to="/profile">
-                                            <NavDropdown.Item>User Profile</NavDropdown.Item>
+                                            <NavDropdown.Item>
+                                                User Profile
+                                            </NavDropdown.Item>
                                         </LinkContainer>
                                         <LinkContainer to="/orderhistory">
-                                            <NavDropdown.Item>Order History</NavDropdown.Item>
+                                            <NavDropdown.Item>
+                                                Order History
+                                            </NavDropdown.Item>
                                         </LinkContainer>
                                         <NavDropdown.Divider />
                                         <Link
@@ -87,10 +94,17 @@ function App() {
                             <Route path="/signin" element={<SigninScreen />} />
                             <Route path="/signup" element={<SignupScreen />} />
                             <Route
+                                path="/placeorder"
+                                element={<PlaceOrderScreen />}
+                            />
+                            <Route
                                 path="/shipping"
                                 element={<ShippingAddressScreen />}
                             ></Route>
-                            <Route path="/payment" element={<PaymentMethodScreen />}></Route>
+                            <Route
+                                path="/payment"
+                                element={<PaymentMethodScreen />}
+                            ></Route>
                             <Route path="/" element={<HomeScreen />} />
                         </Routes>
                     </Container>
